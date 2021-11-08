@@ -4,7 +4,7 @@ Given a zero-based permutation nums (0-indexed), build an array ans of the same 
 Constraints:
 1 <= nums.length <= 1000
 0 <= nums[i] < nums.length
-The elements in nums are distinct.
+The elements in nums are distinct. 
 
 _________________________________________________________________________________________________________________________________________________________________________________
 
