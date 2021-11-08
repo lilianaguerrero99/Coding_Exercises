@@ -7,6 +7,7 @@ Constraints:
 The elements in nums are distinct.
 
 _________________________________________________________________________________________________________________________________________________________________________________
+
 public int[] buildArray(int[] nums) {
   int[] results = new int[nums.length];
   for(int i = 0; i < nums.length; i++){
