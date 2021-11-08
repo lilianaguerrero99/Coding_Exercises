@@ -1,0 +1,93 @@
+ROMAN TO INTEGER:
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+For example, 2 is written as II in Roman numeral, just two one's added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II. Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:
+I can be placed before V (5) and X (10) to make 4 and 9. 
+X can be placed before L (50) and C (100) to make 40 and 90. 
+C can be placed before D (500) and M (1000) to make 400 and 900.
+Given a roman numeral, convert it to an integer.
+
+CONSTRAINTS:
+1 <= s.length <= 15
+s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
+It is guaranteed that s is a valid roman numeral in the range [1, 3999]
+
+CODE:
+
+public static int romanToInt(String s) {
+    int i = 1, v = 5, x = 10, l = 50, c = 100, d = 500, m = 1000, results = 0;
+    for(int j = 0; j < s.length(); j++){
+        if(s.charAt(j) == 'I'){
+            if(j+1 < s.length()){
+                if(s.charAt(j+1) == 'V'){
+                    results = results + (v - i);
+                    j++;
+                }
+                else if(s.charAt(j+1) == 'X'){
+                    results = results + (x - i);
+                    j++;
+                }
+                else {
+                    results = results + i;
+                }
+            }
+            else {
+                results = results + i;
+            }
+        }
+        else if(s.charAt(j) == 'V'){
+            results = results + v;
+        }
+        else if(s.charAt(j) == 'X'){
+            if(j + 1 < s.length() ) {
+                if (s.charAt(j + 1) == 'L') {
+                    results = results + (l - x);
+                    j++;
+                } else if (s.charAt(j + 1) == 'C') {
+                    results = results + (c - x);
+                    j++;
+                }
+                else {
+                    results = results + x;
+                }
+            }
+            else {
+                results = results + x;
+            }
+        }
+        else if(s.charAt(j) == 'L'){
+            results = results + l;
+        }
+        else if(s.charAt(j) == 'C'){
+            if(j+1 < s.length()) {
+                if (s.charAt(j + 1) == 'D') {
+                    results = results + (d- c);
+                    j++;
+                } else if (s.charAt(j + 1) == 'M') {
+                    results = results + (m - c);
+                    j++;
+                }
+                else {
+                    results = results + c;
+                }
+            }
+            else {
+                results = results + c;
+            }
+        }
+        else if(s.charAt(j) == 'D'){
+            results = results + d;
+        }
+        else if(s.charAt(j) == 'M'){
+            results = results + m;
+        }
+    }
+    return results;
+}
