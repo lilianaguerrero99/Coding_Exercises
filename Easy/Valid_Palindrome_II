@@ -1,0 +1,70 @@
+VALID PALINDROME II:
+Given a string s, return true if the s can be palindrome after deleting at most one character from it.
+
+CONSTRAINTS:
+1 <= s.length <= 10^5
+s consists of lowercase English letters.
+
+CODE:
+public static boolean validPalindrome(String s) {
+  int takeway = 0;
+  if(s.length() <= 4){
+    if(s.length() == 2){
+      return true;
+    }else if(s.length() == 3){
+      return checkLenThree(s);
+    }else{
+      return checkLenFour(s);
+    }
+  }else{
+    int end = s.length()-1;
+    int half = end/2;
+    for(int i = 0; i < s.length(); i++){
+      if(takeway == 2){
+        return false;
+      }
+      if(i == end || end <= half){
+        break;
+      }
+      if (s.charAt(i) != s.charAt(end)) {
+        if(s.charAt(i) != s.charAt(end-1)){
+          takeway++;
+          end++;
+        }
+        else if(s.charAt(i+1) != s.charAt(end)) {
+          takeway++;
+          i--;
+        }
+      }
+      end--;
+    }
+  }
+  return true;
+}
+
+private static boolean checkLenThree(String s){
+  char a = s.charAt(0);
+  char b = s.charAt(1);
+  char c = s.charAt(2);
+  if(a == c){
+    return true;
+  }else{
+    if(a == b || b == c){
+      return true;
+    } else{
+      return false;
+    }
+  }
+}
+
+private static boolean checkLenFour(String s) {
+  if(s.charAt(0) == s.charAt(3)){
+    return true;
+  }else{
+    if(s.charAt(0) == s.charAt(2) || s.charAt(1) == s.charAt(3)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+}
