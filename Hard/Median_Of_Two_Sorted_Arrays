@@ -1,0 +1,36 @@
+MEDIAN OF TWO SORTED ARRAYS:
+Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+CONSTRAINTS:
+nums1.length == m
+nums2.length == n
+0 <= m <= 1000
+0 <= n <= 1000
+1 <= m + n <= 2000
+-10^6 <= nums1[i], nums2[i] <= 10^6
+
+CODE:
+public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    int size = (nums1.length + nums2.length);
+    int halfSize = size / 2;
+    double median;
+    int[] combined = new int[size];
+    for (int i = 0; i < nums1.length; i++) {
+        combined[i] = nums1[i];
+    }
+    for (int i = 0; i < nums2.length; i++) {
+        if (nums1.length == nums2.length) {
+            combined[i + nums2.length] = nums2[i];
+
+        } else {
+            combined[i + nums1.length] = nums2[i];
+        }
+    }
+    Arrays.sort(combined);
+    if (size % 2 == 0) {
+        median = ((combined[halfSize - 1] + combined[halfSize]) / 2.0);
+    } else {
+        median = combined[halfSize];
+    }
+    return median;
+}
