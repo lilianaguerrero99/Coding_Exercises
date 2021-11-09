@@ -7,21 +7,19 @@ s consists of lowercase English letters.
 
 CODE:
 public static boolean validPalindrome(String s) {
-  int takeway = 0;
-  if(s.length() <= 4){
-    if(s.length() == 2){
+  if(s.length() <= 3){
+    if(s.length() <= 2){
       return true;
     }else if(s.length() == 3){
       return checkLenThree(s);
-    }else{
-      return checkLenFour(s);
     }
   }else{
+    int takeway = 0;
     int end = s.length()-1;
     int half = end/2;
     for(int i = 0; i < s.length(); i++){
       if(takeway == 2){
-        return false;
+       return false;
       }
       if(i == end || end <= half){
         break;
@@ -52,18 +50,6 @@ private static boolean checkLenThree(String s){
     if(a == b || b == c){
       return true;
     } else{
-      return false;
-    }
-  }
-}
-
-private static boolean checkLenFour(String s) {
-  if(s.charAt(0) == s.charAt(3)){
-    return true;
-  }else{
-    if(s.charAt(0) == s.charAt(2) || s.charAt(1) == s.charAt(3)){
-      return true;
-    }else{
       return false;
     }
   }
